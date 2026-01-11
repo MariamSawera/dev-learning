@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NoteCard = () => {
+const BookCard = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const NoteCard = () => {
   )
 }
 
-export default NoteCard
+export default BookCard
