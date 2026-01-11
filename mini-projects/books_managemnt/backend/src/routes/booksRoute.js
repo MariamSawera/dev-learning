@@ -1,15 +1,17 @@
 import express from "express"
 import { Router } from "express";
 import { addABook, deleteBook, getAllBooks, getBookById, updateBook } from "../controllers/booksController.js";
+import { protect } from "../middlewares/authMiddleware.js";
+
 
 const router = express.Router()
 
 router.get("/", getAllBooks);
 router.get("/:id", getBookById);
 
-router.post("/", addABook);
-router.put("/:id", updateBook);
-router.delete("/:id", deleteBook);
+router.post("/",protect, addABook);
+router.put("/:id",protect, updateBook);
+router.delete("/:id",protect, deleteBook);
 
 
 // router.post("/", (req, res) => {
