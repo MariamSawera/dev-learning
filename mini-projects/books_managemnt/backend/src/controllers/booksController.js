@@ -1,9 +1,9 @@
 import Book from "../../models/Book.js";
-
-export const getAllBooks = async (__, res) => {
+import { protect } from "../middlewares/authMiddleware.js";
+export const getAllBooks = async (req, res) => {
 
    try{
-     const books =  await Book.find();
+     const books =  await Book.find({createdBy: req.user.id});
      res.json(books)
     //  res.status(200).send("booksFetched")
 
@@ -34,11 +34,14 @@ export const addABook = async (req, res) => {
 
    try{
     const {title, author, publishedYear} = req.body;
-    const newBook = new Book({title, author, publishedYear})
+    const newBook = new Book({title, author, publishedYear, createdBy: req.user.id
+})
     await newBook.save();
-     res.status(201).json({message : "Book added successfully"})
+
+     res.status(201).json({message : "Book added successfully", book: newBook
+})
    } catch(error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    res.status(500).json({ message: "Server error", error});
     console.error("error in addAbook", error)
 
 

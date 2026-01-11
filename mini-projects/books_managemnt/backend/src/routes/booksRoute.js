@@ -6,7 +6,7 @@ import { protect } from "../middlewares/authMiddleware.js";
 
 const router = express.Router()
 
-router.get("/", getAllBooks);
+router.get("/",protect, getAllBooks);
 router.get("/:id", getBookById);
 
 router.post("/",protect, addABook);

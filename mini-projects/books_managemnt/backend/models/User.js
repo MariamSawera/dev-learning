@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema({
         required:true,
         select: false // prevents password from being returned in queries
 
-    }
+    },
+
 },
 {timestamps: true}
 );
