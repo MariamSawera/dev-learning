@@ -1,6 +1,6 @@
 import Book from "../../models/Book.js";
 
-export const getAllBooks = async (req, res) => {
+export const getMyBooks = async (req, res) => {   
 
    try{
      const books =  await Book.find({createdBy: req.user.id});
@@ -15,6 +15,23 @@ export const getAllBooks = async (req, res) => {
 
 
 }
+
+export const getAllBooks = async (req, res) => {   
+
+   try{
+     const books =  await Book.find();
+     res.json(books)
+    //  res.status(200).send("booksFetched")
+
+   } catch(error) {
+    console.error("error in getAllBooks" ,error)
+    res.status(500).json({ message: "Server error", error: error.message });
+
+   }
+
+
+}
+
 
 export const getBookById = async(req, res) => {
   try{
