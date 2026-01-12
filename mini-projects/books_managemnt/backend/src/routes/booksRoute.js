@@ -2,12 +2,13 @@ import express from "express"
 import { Router } from "express";
 import { addABook, deleteBook, getAllBooks, getBookById, updateBook } from "../controllers/booksController.js";
 import { protect } from "../middlewares/authMiddleware.js";
+import { restrictTo } from "../middlewares/roleMiddleware.js";
 
 
 const router = express.Router()
 
-router.get("/",protect, getAllBooks);
-router.get("/:id", getBookById);
+router.get("/",protect,restrictTo("admin"), getAllBooks);
+router.get("/:id",protect, getBookById);
 
 router.post("/",protect, addABook);
 router.put("/:id",protect, updateBook);
