@@ -18,7 +18,13 @@ const userSchema = new mongoose.Schema({
         required:true,
         select: false // prevents password from being returned in queries
 
-    },
+    }, 
+    role: {
+        type: String,
+        enum: ["admin", "user"],
+        default: "user",
+
+    }
 
 },
 {timestamps: true}
