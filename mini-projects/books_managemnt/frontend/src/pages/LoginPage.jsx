@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import api from "../lib/axios"
+import { useNavigate } from 'react-router-dom'
+
 
 const LoginPage = () => {
+
+  const navigate = useNavigate()
+
 
   const [isSignup, setIsSignup] = useState(false)
 
@@ -38,6 +43,10 @@ const LoginPage = () => {
             password:password,
           })
           console.log("Login susccess", res.data)
+          localStorage.setItem('token', res.data.token)
+
+          navigate('/home')
+
         }
 
       }catch(error){
