@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0, user-scalable=yes">
+    <title>Mariam Sawera - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #09090b;
+            overflow-x: hidden;
+        }
+
+        /* Responsive zoom handling */
+        html {
+            font-size: 16px;
+        }
+
+        @media (min-width: 1920px) {
+            html {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+        /* Ensure containers scale properly */
+        .container-responsive {
+            width: 100%;
+            max-width: 100%;
+            padding-left: clamp(1rem, 5vw, 3rem);
+            padding-right: clamp(1rem, 5vw, 3rem);
+        }
+
+        /* Fluid typography */
+        .fluid-text-9xl {
+            font-size: clamp(3rem, 12vw, 8rem);
+        }
+
+        .fluid-text-6xl {
+            font-size: clamp(2rem, 6vw, 4rem);
+        }
+
+        .fluid-text-3xl {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+        }
+
+        .fluid-text-2xl {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+        }
+
+        .fluid-text-xl {
+            font-size: clamp(0.9rem, 2vw, 1.25rem);
+        }
+
+        .fluid-text-lg {
+            font-size: clamp(0.85rem, 1.5vw, 1.125rem);
+        }
+
+        .fluid-text-base {
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+        }
+
+        /* Scrolling Marquee */
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee {
+            animation: marquee 20s linear infinite;
+        }
+
+        /* Glassmorphism card */
+        .glass-card {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(24, 24, 27, 0.8);
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Neon glow effect */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.8),
+                         0 0 20px rgba(168, 85, 247, 0.6),
+                         0 0 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+        }
+
+        /* Social link underline animation */
+        .social-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            transition: width 0.3s ease;
+        }
+
+        .social-link:hover::after {
+            width: 100%;
+        }
+
+        /* Grid animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive grid for zoom handling */
+        .bento-grid {
+            display: grid;
+            gap: clamp(1rem, 2vw, 1.5rem);
+            grid-auto-rows: minmax(200px, auto);
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Ensure images scale properly with zoom */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Smooth scaling for all interactive elements */
+        button, a, .glass-card {
+            transform-origin: center;
+        }
+
+        /* Prevent layout shift on zoom */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Flexible spacing */
+        .section-spacing {
+            padding-top: clamp(3rem, 10vh, 5rem);
+            padding-bottom: clamp(3rem, 10vh, 5rem);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white">
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 section-spacing">
+        <div class="text-center fade-in max-w-7xl mx-auto w-full">
+            <h1 class="fluid-text-9xl font-bold mb-6 sm:mb-8 neon-text px-4">
+                Mariam Sawera
+            </h1>
+            <p class="fluid-text-3xl text-gray-400 font-light mb-3 sm:mb-4 px-4">
+                Full-Stack Developer & UI/UX Designer
+            </p>
+            <p class="fluid-text-lg text-gray-500 max-w-2xl mx-auto mb-6 sm:mb-8 px-6">
+                Crafting beautiful, functional digital experiences with modern technologies
+            </p>
+            
+            <!-- Scrolling Marquee of Skills -->
+            <div class="overflow-hidden w-full max-w-6xl mx-auto mt-12">
+                <div class="flex whitespace-nowrap marquee">
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-purple-400 border border-purple-500/30 rounded-full">React</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-pink-400 border border-pink-500/30 rounded-full">TypeScript</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-purple-400 border border-purple-500/30 rounded-full">Node.js</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-pink-400 border border-pink-500/30 rounded-full">UI/UX Design</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-purple-400 border border-purple-500/30 rounded-full">Python</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-pink-400 border border-pink-500/30 rounded-full">GraphQL</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-purple-400 border border-purple-500/30 rounded-full">React</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-pink-400 border border-pink-500/30 rounded-full">TypeScript</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-purple-400 border border-purple-500/30 rounded-full">Node.js</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-pink-400 border border-pink-500/30 rounded-full">UI/UX Design</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-purple-400 border border-purple-500/30 rounded-full">Python</span>
+                    <span class="inline-block px-4 sm:px-6 py-2 sm:py-3 mx-3 sm:mx-4 fluid-text-xl font-semibold text-pink-400 border border-pink-500/30 rounded-full">GraphQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section - Bento Box Grid -->
+    <section class="min-h-screen section-spacing px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="fluid-text-6xl font-bold mb-16 text-center neon-text">Featured Work</h2>
+            
+            <!-- Bento Grid -->
+            <div class="bento-grid">
+                <!-- Project 1 - Large -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 lg:col-span-2 lg:row-span-2 min-h-[350px] sm:min-h-[400px] flex flex-col justify-between">
+                    <div>
+                        <h3 class="fluid-text-2xl font-bold mb-3 sm:mb-4 text-purple-400">Project Alpha</h3>
+                        <p class="fluid-text-base text-gray-300 mb-4 sm:mb-6">A cutting-edge web application built with React and AI integration. Features real-time collaboration and advanced analytics.</p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">React</span>
+                        <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">AI/ML</span>
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">WebSockets</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between">
+                    <div>
+                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-pink-400">Design System</h3>
+                        <p class="fluid-text-base text-gray-300 mb-3 sm:mb-4">Comprehensive component library with dark mode and accessibility features.</p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">Figma</span>
+                        <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">CSS</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between">
+                    <div>
+                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-purple-400">E-Commerce Platform</h3>
+                        <p class="fluid-text-base text-gray-300 mb-3 sm:mb-4">Full-stack marketplace with payment integration and inventory management.</p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">Next.js</span>
+                        <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">Stripe</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 - Wide -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 lg:col-span-2 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between">
+                    <div>
+                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-pink-400">Mobile App</h3>
+                        <p class="fluid-text-base text-gray-300 mb-3 sm:mb-4">Cross-platform mobile application with offline-first architecture and push notifications.</p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">React Native</span>
+                        <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">Firebase</span>
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">Redux</span>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between">
+                    <div>
+                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-purple-400">API Gateway</h3>
+                        <p class="fluid-text-base text-gray-300 mb-3 sm:mb-4">Microservices architecture with GraphQL and REST endpoints.</p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">Node.js</span>
+                        <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">GraphQL</span>
+                    </div>
+                </div>
+
+                <!-- Project 6 - Tall -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 lg:row-span-2 min-h-[350px] sm:min-h-[400px] flex flex-col justify-between">
+                    <div>
+                        <h3 class="fluid-text-2xl font-bold mb-3 sm:mb-4 text-pink-400">Data Visualization</h3>
+                        <p class="fluid-text-base text-gray-300 mb-4 sm:mb-6">Interactive dashboard for real-time analytics with custom D3.js visualizations and responsive design.</p>
+                    </div>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">D3.js</span>
+                        <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">Vue</span>
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">WebGL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="min-h-screen py-20 px-4 sm:px-6 lg:px-8 flex items-center">
+        <div class="max-w-7xl mx-auto w-full">
+            <h2 class="text-4xl sm:text-6xl font-bold mb-16 text-center neon-text">About Me</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Column -->
+                <div class="space-y-6">
+                    <p class="text-xl text-gray-300 leading-relaxed">
+                        I'm a passionate full-stack developer and designer dedicated to creating innovative digital solutions that blend aesthetic excellence with technical precision.
+                    </p>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        My expertise spans modern web technologies, user experience design, and scalable application development. I thrive on transforming complex challenges into elegant, user-friendly solutions that drive measurable results.
+                    </p>
+                    <p class="text-lg text-gray-400 leading-relaxed">
+                        Currently focused on building cutting-edge applications using React, TypeScript, and Node.js, I bring a unique perspective that bridges design thinking with robust software engineering practices.
+                    </p>
+                    <div class="pt-6">
+                        <a href="#" class="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105">
+                            Download Resume
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Headshot Column -->
+                <div class="flex justify-center lg:justify-end">
+                    <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl neon-border overflow-hidden glass-card relative group">
+                        <img 
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=500&fit=crop" 
+                            alt="Mariam Sawera - Professional Headshot" 
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-pink-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col items-center space-y-6 sm:space-y-8">
+                <h3 class="text-xl sm:text-2xl font-semibold text-gray-400">Let's Connect</h3>
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 text-lg sm:text-xl lg:text-2xl">
+                    <a href="#" class="social-link text-gray-300 hover:text-purple-400 transition-colors duration-300">
+                        GitHub
+                    </a>
+                    <a href="#" class="social-link text-gray-300 hover:text-purple-400 transition-colors duration-300">
+                        LinkedIn
+                    </a>
+                    <a href="#" class="social-link text-gray-300 hover:text-purple-400 transition-colors duration-300">
+                        Twitter
+                    </a>
+                    <a href="#" class="social-link text-gray-300 hover:text-purple-400 transition-colors duration-300">
+                        Email
+                    </a>
+                    <a href="#" class="social-link text-gray-300 hover:text-purple-400 transition-colors duration-300">
+                        Dribbble
+                    </a>
+                </div>
+                <p class="text-gray-500 text-xs sm:text-sm text-center">© 2026 Mariam Sawera. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
