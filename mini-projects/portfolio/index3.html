@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0, user-scalable=yes">
+    <title>Mariam Sawera - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #020617;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Space background with stars and nebula - Midnight Blue Theme */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(30, 58, 138, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 80%, rgba(20, 40, 100, 0.18) 0%, transparent 50%);
+            z-index: -2;
+        }
+
+        /* Animated stars */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 80%, white, transparent),
+                radial-gradient(1px 1px at 15% 60%, white, transparent);
+            background-size: 200% 200%, 300% 300%, 250% 250%, 280% 280%, 220% 220%, 260% 260%, 290% 290%;
+            background-position: 0% 0%, 20% 20%, 40% 40%, 60% 60%, 80% 80%, 10% 90%, 70% 30%;
+            animation: twinkle 8s ease-in-out infinite;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        /* Floating particles */
+        .space-particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: -1;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            z-index: -1;
+        }
+
+        @keyframes shooting {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(-300px, 300px); opacity: 0; }
+        }
+
+        /* Diagonal section dividers */
+        .diagonal-top {
+            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+            padding-top: 8rem;
+        }
+
+        .diagonal-bottom {
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            padding-bottom: 8rem;
+        }
+
+        .diagonal-both {
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+            padding: 8rem 0;
+        }
+
+        /* Responsive zoom handling */
+        html {
+            font-size: 16px;
+        }
+
+        @media (min-width: 1920px) {
+            html { font-size: 18px; }
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+            .diagonal-top, .diagonal-bottom, .diagonal-both {
+                clip-path: none;
+                padding: 4rem 0;
+            }
+        }
+
+        /* Fluid typography */
+        .fluid-text-9xl { font-size: clamp(3rem, 12vw, 8rem); }
+        .fluid-text-6xl { font-size: clamp(2rem, 6vw, 4rem); }
+        .fluid-text-3xl { font-size: clamp(1.2rem, 3vw, 2rem); }
+        .fluid-text-2xl { font-size: clamp(1rem, 2.5vw, 1.5rem); }
+        .fluid-text-xl { font-size: clamp(0.9rem, 2vw, 1.25rem); }
+        .fluid-text-lg { font-size: clamp(0.85rem, 1.5vw, 1.125rem); }
+        .fluid-text-base { font-size: clamp(0.8rem, 1.2vw, 1rem); }
+
+        /* Circular floating name */
+        .circular-text {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scrolling Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee {
+            animation: marquee 20s linear infinite;
+        }
+
+        /* Glassmorphism card with midnight blue space theme */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(37, 99, 235, 0.15);
+            position: relative;
+        }
+
+        .glass-card:hover {
+            background: rgba(15, 23, 42, 0.7);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4),
+                        0 0 60px rgba(37, 99, 235, 0.3),
+                        0 0 90px rgba(96, 165, 250, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Enhanced neon glow effect - Midnight Blue */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(96, 165, 250, 0.8),
+                         0 0 20px rgba(59, 130, 246, 0.6),
+                         0 0 30px rgba(37, 99, 235, 0.4),
+                         0 0 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.6),
+                        0 0 30px rgba(37, 99, 235, 0.4),
+                        inset 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Social link underline animation - Midnight Blue */
+        .social-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+            transition: width 0.3s ease;
+        }
+
+        .social-link:hover::after {
+            width: 100%;
+        }
+
+        /* Grid animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Staggered fade in for projects */
+        .project-card {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Masonry grid layout */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(1rem, 2vw, 1.5rem);
+            grid-auto-rows: 10px;
+        }
+
+        .masonry-item-1 { grid-row: span 45; }
+        .masonry-item-2 { grid-row: span 35; }
+        .masonry-item-3 { grid-row: span 40; }
+        .masonry-item-4 { grid-row: span 35; }
+        .masonry-item-5 { grid-row: span 40; }
+        .masonry-item-6 { grid-row: span 45; }
+
+        @media (max-width: 768px) {
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+            .masonry-item-1,
+            .masonry-item-2,
+            .masonry-item-3,
+            .masonry-item-4,
+            .masonry-item-5,
+            .masonry-item-6 {
+                grid-row: auto;
+            }
+        }
+
+        /* Aurora effect - Midnight Blue */
+        .aurora {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(ellipse at center, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+            animation: aurora 15s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes aurora {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: rotate(180deg) scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        /* Hexagonal profile container */
+        .hexagon {
+            position: relative;
+            width: 300px;
+            height: 346px;
+            margin: 0 auto;
+        }
+
+        .hexagon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        @media (max-width: 768px) {
+            .hexagon {
+                width: 200px;
+                height: 231px;
+            }
+        }
+
+        /* Floating skill badges */
+        .floating-badge {
+            animation: floatBadge 6s ease-in-out infinite;
+        }
+
+        .floating-badge:nth-child(odd) {
+            animation-delay: 1s;
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Split screen effect */
+        .split-screen {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .split-screen {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Section spacing */
+        .section-spacing {
+            padding-top: clamp(3rem, 10vh, 5rem);
+            padding-bottom: clamp(3rem, 10vh, 5rem);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white">
+
+    <!-- Aurora Effect -->
+    <div class="aurora"></div>
+
+    <!-- Space Particles -->
+    <div class="space-particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="space-particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="space-particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="space-particle" style="left: 40%; animation-delay: 6s;"></div>
+    <div class="space-particle" style="left: 50%; animation-delay: 8s;"></div>
+    <div class="space-particle" style="left: 60%; animation-delay: 10s;"></div>
+    <div class="space-particle" style="left: 70%; animation-delay: 12s;"></div>
+    <div class="space-particle" style="left: 80%; animation-delay: 14s;"></div>
+    <div class="space-particle" style="left: 90%; animation-delay: 16s;"></div>
+
+    <!-- Shooting Stars -->
+    <div class="shooting-star" style="top: 20%; right: 30%; animation: shooting 3s ease-in 5s infinite;"></div>
+    <div class="shooting-star" style="top: 40%; right: 60%; animation: shooting 3s ease-in 12s infinite;"></div>
+    <div class="shooting-star" style="top: 60%; right: 20%; animation: shooting 3s ease-in 18s infinite;"></div>
+
+    <!-- Hero Section with Circular Design -->
+    <section class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center fade-in max-w-7xl mx-auto w-full">
+            <!-- Circular rotating name -->
+            <div class="relative w-64 h-64 sm:w-80 sm:h-80 mx-auto mb-8">
+                <div class="circular-text absolute inset-0">
+                    <svg viewBox="0 0 200 200" class="w-full h-full">
+                        <defs>
+                            <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"></path>
+                        </defs>
+                        <text class="fill-blue-400 text-xs tracking-widest">
+                            <textPath href="#circlePath">
+                                MARIAM SAWERA • DEVELOPER • DESIGNER • 
+                            </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-sky-500 flex items-center justify-center neon-border">
+                        <span class="text-5xl font-bold neon-text">MS</span>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="fluid-text-9xl font-bold mb-6 neon-text">
+                Mariam Sawera
+            </h1>
+            <p class="fluid-text-3xl text-gray-400 font-light mb-4">
+                Full-Stack Developer & UI/UX Designer
+            </p>
+            <p class="fluid-text-lg text-gray-500 max-w-2xl mx-auto mb-8 px-6">
+                Crafting beautiful, functional digital experiences with modern technologies
+            </p>
+
+            <!-- Floating skill badges -->
+            <div class="flex flex-wrap justify-center gap-3 mt-12 max-w-3xl mx-auto">
+                <span class="floating-badge px-4 py-2 fluid-text-base font-semibold text-blue-400 border border-blue-500/30 rounded-full bg-blue-500/10">React</span>
+                <span class="floating-badge px-4 py-2 fluid-text-base font-semibold text-sky-400 border border-sky-500/30 rounded-full bg-sky-500/10">TypeScript</span>
+                <span class="floating-badge px-4 py-2 fluid-text-base font-semibold text-blue-400 border border-blue-500/30 rounded-full bg-blue-500/10">Node.js</span>
+                <span class="floating-badge px-4 py-2 fluid-text-base font-semibold text-sky-400 border border-sky-500/30 rounded-full bg-sky-500/10">UI/UX</span>
+                <span class="floating-badge px-4 py-2 fluid-text-base font-semibold text-blue-400 border border-blue-500/30 rounded-full bg-blue-500/10">Python</span>
+                <span class="floating-badge px-4 py-2 fluid-text-base font-semibold text-sky-400 border border-sky-500/30 rounded-full bg-sky-500/10">GraphQL</span>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Work Section - Masonry Grid with Diagonal -->
+    <section class="diagonal-both bg-gradient-to-b from-slate-900/50 to-transparent section-spacing px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="fluid-text-6xl font-bold mb-4 text-center neon-text">Featured Work</h2>
+            <p class="text-center text-gray-400 mb-16 fluid-text-lg">Click any project to view live demo</p>
+            
+            <!-- Masonry Grid -->
+            <div class="masonry-grid">
+                <!-- Project 1 -->
+                <a href="https://your-project-alpha-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 overflow-hidden group cursor-pointer masonry-item-1 project-card">
+                    <div class="mb-4 rounded-xl overflow-hidden border border-blue-500/20 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop" 
+                            alt="Project Alpha" 
+                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2">
+                                View Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="fluid-text-2xl font-bold mb-3 text-blue-400 group-hover:text-blue-300 transition-colors">Project Alpha</h3>
+                    <p class="fluid-text-base text-gray-300 mb-4">A cutting-edge web application with AI integration and real-time collaboration.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">React</span>
+                        <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">AI/ML</span>
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">WebSockets</span>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://your-design-system-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 overflow-hidden group cursor-pointer masonry-item-2 project-card">
+                    <div class="mb-4 rounded-xl overflow-hidden border border-sky-500/20 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" 
+                            alt="Design System" 
+                            class="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2">
+                                View Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="fluid-text-xl font-bold mb-3 text-sky-400 group-hover:text-sky-300 transition-colors">Design System</h3>
+                    <p class="fluid-text-base text-gray-300 mb-4">Component library with dark mode and accessibility.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">Figma</span>
+                        <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">CSS</span>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="https://your-ecommerce-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 overflow-hidden group cursor-pointer masonry-item-3 project-card">
+                    <div class="mb-4 rounded-xl overflow-hidden border border-blue-500/20 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=400&fit=crop" 
+                            alt="E-Commerce" 
+                            class="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2">
+                                View Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="fluid-text-xl font-bold mb-3 text-blue-400 group-hover:text-blue-300 transition-colors">E-Commerce Platform</h3>
+                    <p class="fluid-text-base text-gray-300 mb-4">Full-stack marketplace with payment integration.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">Next.js</span>
+                        <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">Stripe</span>
+                    </div>
+                </a>
+
+                <!-- Project 4 -->
+                <a href="https://your-mobile-app-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 overflow-hidden group cursor-pointer masonry-item-4 project-card">
+                    <div class="mb-4 rounded-xl overflow-hidden border border-sky-500/20 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop" 
+                            alt="Mobile App" 
+                            class="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2">
+                                View Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="fluid-text-xl font-bold mb-3 text-sky-400 group-hover:text-sky-300 transition-colors">Mobile App</h3>
+                    <p class="fluid-text-base text-gray-300 mb-4">Cross-platform app with offline-first architecture.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">React Native</span>
+                        <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">Firebase</span>
+                    </div>
+                </a>
+
+                <!-- Project 5 -->
+                <a href="https://your-api-gateway-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 overflow-hidden group cursor-pointer masonry-item-5 project-card">
+                    <div class="mb-4 rounded-xl overflow-hidden border border-blue-500/20 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop" 
+                            alt="API Gateway" 
+                            class="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2">
+                                View Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="fluid-text-xl font-bold mb-3 text-blue-400 group-hover:text-blue-300 transition-colors">API Gateway</h3>
+                    <p class="fluid-text-base text-gray-300 mb-4">Microservices with GraphQL and REST endpoints.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">Node.js</span>
+                        <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">GraphQL</span>
+                    </div>
+                </a>
+
+                <!-- Project 6 -->
+                <a href="https://your-data-viz-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 overflow-hidden group cursor-pointer masonry-item-6 project-card">
+                    <div class="mb-4 rounded-xl overflow-hidden border border-sky-500/20 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=600&fit=crop" 
+                            alt="Data Visualization" 
+                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2">
+                                View Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <h3 class="fluid-text-2xl font-bold mb-3 text-sky-400 group-hover:text-sky-300 transition-colors">Data Visualization</h3>
+                    <p class="fluid-text-base text-gray-300 mb-4">Interactive dashboard with D3.js visualizations and responsive design.</p>
+                    <div class="flex gap-2 flex-wrap">
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">D3.js</span>
+                        <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">Vue</span>
+                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">WebGL</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Split Screen with Hexagon -->
+    <section class="diagonal-top section-spacing px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-slate-900/50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="fluid-text-6xl font-bold mb-16 text-center neon-text">About Me</h2>
+            
+            <div class="split-screen">
+                <!-- Text Column -->
+                <div class="space-y-6 order-2 lg:order-1">
+                    <p class="fluid-text-xl text-gray-300 leading-relaxed">
+                        I'm a passionate full-stack developer and designer dedicated to creating innovative digital solutions that blend aesthetic excellence with technical precision.
+                    </p>
+                    <p class="fluid-text-lg text-gray-400 leading-relaxed">
+                        My expertise spans modern web technologies, user experience design, and scalable application development. I thrive on transforming complex challenges into elegant, user-friendly solutions.
+                    </p>
+                    <p class="fluid-text-lg text-gray-400 leading-relaxed">
+                        Currently focused on building cutting-edge applications using React, TypeScript, and Node.js, bringing a unique perspective that bridges design thinking with robust engineering.
+                    </p>
+                    <div class="pt-6 flex gap-4 flex-wrap">
+                        <a href="#" class="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-sky-500 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 fluid-text-base">
+                            Download Resume
+                        </a>
+                        <a href="#contact" class="inline-block px-6 py-3 border border-blue-500 text-blue-400 rounded-full font-semibold hover:bg-blue-500/10 transition-all duration-300 fluid-text-base">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hexagon Image Column -->
+                <div class="flex justify-center items-center order-1 lg:order-2 mb-8 lg:mb-0">
+                    <div class="hexagon neon-border group">
+                        <img 
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=500&fit=crop" 
+                            alt="Mariam Sawera" 
+                            class="transition-transform duration-500 group-hover:scale-110"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Orbital Design -->
+    <footer id="contact" class="diagonal-bottom section-spacing px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-slate-900 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col items-center space-y-8">
+                <h3 class="fluid-text-2xl font-semibold text-gray-400">Let's Connect</h3>
+                
+                <!-- Social links in circular arrangement -->
+                <div class="relative w-full max-w-md h-64 flex items-center justify-center">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-32 h-32 rounded-full border-2 border-blue-500/20"></div>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-6 sm:gap-8 fluid-text-xl relative z-10">
+                        <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                            GitHub
+                        </a>
+                        <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                            LinkedIn
+                        </a>
+                        <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                            Twitter
+                        </a>
+                        <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                            Email
+                        </a>
+                        <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                            Dribbble
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-gray-500 fluid-text-base mb-2">© 2026 Mariam Sawera. All rights reserved.</p>
+                    <p class="text-gray-600 text-sm">Built with passion in the midnight sky ✨</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

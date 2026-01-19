@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0, user-scalable=yes">
+    <title>Mariam Sawera - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #020617;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Space background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(30, 58, 138, 0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
+            z-index: -2;
+        }
+
+        /* Animated stars */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent);
+            background-size: 200% 200%, 300% 300%, 250% 250%, 280% 280%;
+            background-position: 0% 0%, 20% 20%, 40% 40%, 60% 60%;
+            animation: twinkle 8s ease-in-out infinite;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.9; }
+        }
+
+        /* Floating particles */
+        .space-particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: -1;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            z-index: -1;
+        }
+
+        @keyframes shooting {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(-300px, 300px); opacity: 0; }
+        }
+
+        /* Aurora */
+        .aurora {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(ellipse at center, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+            animation: aurora 15s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes aurora {
+            0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.3; }
+            50% { transform: rotate(180deg) scale(1.2); opacity: 0.6; }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        @media (min-width: 1920px) {
+            html { font-size: 18px; }
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+        }
+
+        /* Fluid typography */
+        .fluid-text-9xl { font-size: clamp(2.5rem, 10vw, 6rem); }
+        .fluid-text-6xl { font-size: clamp(1.8rem, 5vw, 3.5rem); }
+        .fluid-text-3xl { font-size: clamp(1.2rem, 3vw, 2rem); }
+        .fluid-text-2xl { font-size: clamp(1rem, 2.5vw, 1.5rem); }
+        .fluid-text-xl { font-size: clamp(0.9rem, 2vw, 1.25rem); }
+        .fluid-text-lg { font-size: clamp(0.85rem, 1.5vw, 1.125rem); }
+        .fluid-text-base { font-size: clamp(0.8rem, 1.2vw, 1rem); }
+
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            background: transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-dot.active {
+            background: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+        }
+
+        .nav-dot:hover {
+            transform: scale(1.3);
+            border-color: #3b82f6;
+        }
+
+        @media (max-width: 1024px) {
+            .side-nav {
+                display: none;
+            }
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(37, 99, 235, 0.15);
+        }
+
+        .glass-card:hover {
+            background: rgba(15, 23, 42, 0.7);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4),
+                        0 0 60px rgba(37, 99, 235, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Neon effects */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(96, 165, 250, 0.8),
+                         0 0 20px rgba(59, 130, 246, 0.6),
+                         0 0 30px rgba(37, 99, 235, 0.4);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.6),
+                        0 0 30px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.5), transparent);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 0;
+            }
+        }
+
+        .timeline-item {
+            opacity: 0;
+            animation: fadeInTimeline 0.6s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInTimeline {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Grid layout for projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Fade in animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Social link */
+        .social-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+            transition: width 0.3s ease;
+        }
+
+        .social-link:hover::after {
+            width: 100%;
+        }
+
+        /* Profile image with frame */
+        .profile-frame {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+        }
+
+        .profile-frame::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: linear-gradient(45deg, #3b82f6, #60a5fa, #3b82f6);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: rotateFrame 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotateFrame {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Skill tag animation */
+        .skill-tag {
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Section */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 1rem;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                min-height: auto;
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Aurora Effect -->
+    <div class="aurora"></div>
+
+    <!-- Space Particles -->
+    <div class="space-particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="space-particle" style="left: 30%; animation-delay: 3s;"></div>
+    <div class="space-particle" style="left: 50%; animation-delay: 6s;"></div>
+    <div class="space-particle" style="left: 70%; animation-delay: 9s;"></div>
+    <div class="space-particle" style="left: 90%; animation-delay: 12s;"></div>
+
+    <!-- Shooting Stars -->
+    <div class="shooting-star" style="top: 20%; right: 30%; animation: shooting 3s ease-in 5s infinite;"></div>
+    <div class="shooting-star" style="top: 50%; right: 60%; animation: shooting 3s ease-in 12s infinite;"></div>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav">
+        <div class="flex flex-col gap-6">
+            <a href="#home" class="nav-dot active" data-section="home"></a>
+            <a href="#work" class="nav-dot" data-section="work"></a>
+            <a href="#about" class="nav-dot" data-section="about"></a>
+            <a href="#contact" class="nav-dot" data-section="contact"></a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Text Content -->
+                <div class="fade-in">
+                    <div class="mb-6">
+                        <span class="text-blue-400 fluid-text-lg font-semibold tracking-wider">HELLO, I'M</span>
+                    </div>
+                    <h1 class="fluid-text-9xl font-bold mb-4 neon-text leading-tight">
+                        Mariam<br/>Sawera
+                    </h1>
+                    <p class="fluid-text-3xl text-gray-400 font-light mb-6">
+                        Full-Stack Developer & UI/UX Designer
+                    </p>
+                    <p class="fluid-text-lg text-gray-500 mb-8 max-w-xl">
+                        Crafting beautiful, functional digital experiences with modern technologies. Transforming ideas into elegant solutions.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex gap-4 flex-wrap mb-12">
+                        <a href="#work" class="px-8 py-4 bg-gradient-to-r from-blue-500 to-sky-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 fluid-text-base">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="px-8 py-4 border border-blue-500 text-blue-400 rounded-lg font-semibold hover:bg-blue-500/10 transition-all duration-300 fluid-text-base">
+                            Get in Touch
+                        </a>
+                    </div>
+
+                    <!-- Skills Tags -->
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag px-4 py-2 fluid-text-base font-semibold text-blue-400 border border-blue-500/30 rounded-lg bg-blue-500/10">React</span>
+                        <span class="skill-tag px-4 py-2 fluid-text-base font-semibold text-sky-400 border border-sky-500/30 rounded-lg bg-sky-500/10">TypeScript</span>
+                        <span class="skill-tag px-4 py-2 fluid-text-base font-semibold text-blue-400 border border-blue-500/30 rounded-lg bg-blue-500/10">Node.js</span>
+                        <span class="skill-tag px-4 py-2 fluid-text-base font-semibold text-sky-400 border border-sky-500/30 rounded-lg bg-sky-500/10">UI/UX</span>
+                        <span class="skill-tag px-4 py-2 fluid-text-base font-semibold text-blue-400 border border-blue-500/30 rounded-lg bg-blue-500/10">Python</span>
+                        <span class="skill-tag px-4 py-2 fluid-text-base font-semibold text-sky-400 border border-sky-500/30 rounded-lg bg-sky-500/10">GraphQL</span>
+                    </div>
+                </div>
+
+                <!-- Right: Profile Image -->
+                <div class="fade-in flex justify-center lg:justify-end">
+                    <div class="profile-frame neon-border">
+                        <img 
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=500&fit=crop" 
+                            alt="Mariam Sawera"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with Timeline -->
+    <section id="work" class="bg-gradient-to-b from-slate-900/30 to-transparent">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="fluid-text-6xl font-bold mb-4 neon-text">Featured Projects</h2>
+                <p class="fluid-text-lg text-gray-400">Click any project to view live demo</p>
+            </div>
+
+            <!-- Project Grid -->
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <a href="https://your-project-alpha-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl overflow-hidden group cursor-pointer timeline-item">
+                    <div class="relative overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop" 
+                            alt="Project Alpha" 
+                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2 fluid-text-lg">
+                                View Live Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="fluid-text-2xl font-bold mb-3 text-blue-400 group-hover:text-blue-300 transition-colors">Project Alpha</h3>
+                        <p class="fluid-text-base text-gray-300 mb-4">A cutting-edge web application with AI integration and real-time collaboration features.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">React</span>
+                            <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">AI/ML</span>
+                            <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">WebSockets</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://your-design-system-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl overflow-hidden group cursor-pointer timeline-item">
+                    <div class="relative overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" 
+                            alt="Design System" 
+                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2 fluid-text-lg">
+                                View Live Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="fluid-text-2xl font-bold mb-3 text-sky-400 group-hover:text-sky-300 transition-colors">Design System</h3>
+                        <p class="fluid-text-base text-gray-300 mb-4">Comprehensive component library with dark mode and accessibility features.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">Figma</span>
+                            <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">CSS</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="https://your-ecommerce-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl overflow-hidden group cursor-pointer timeline-item">
+                    <div class="relative overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=400&fit=crop" 
+                            alt="E-Commerce Platform" 
+                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2 fluid-text-lg">
+                                View Live Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="fluid-text-2xl font-bold mb-3 text-blue-400 group-hover:text-blue-300 transition-colors">E-Commerce Platform</h3>
+                        <p class="fluid-text-base text-gray-300 mb-4">Full-stack marketplace with payment integration and inventory management.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">Next.js</span>
+                            <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">Stripe</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 4 -->
+                <a href="https://your-mobile-app-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl overflow-hidden group cursor-pointer timeline-item">
+                    <div class="relative overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop" 
+                            alt="Mobile App" 
+                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2 fluid-text-lg">
+                                View Live Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="fluid-text-2xl font-bold mb-3 text-sky-400 group-hover:text-sky-300 transition-colors">Mobile App</h3>
+                        <p class="fluid-text-base text-gray-300 mb-4">Cross-platform mobile application with offline-first architecture.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">React Native</span>
+                            <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">Firebase</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 5 -->
+                <a href="https://your-api-gateway-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl overflow-hidden group cursor-pointer timeline-item">
+                    <div class="relative overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop" 
+                            alt="API Gateway" 
+                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2 fluid-text-lg">
+                                View Live Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="fluid-text-2xl font-bold mb-3 text-blue-400 group-hover:text-blue-300 transition-colors">API Gateway</h3>
+                        <p class="fluid-text-base text-gray-300 mb-4">Microservices architecture with GraphQL and REST endpoints.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">Node.js</span>
+                            <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">GraphQL</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 6 -->
+                <a href="https://your-data-viz-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl overflow-hidden group cursor-pointer timeline-item">
+                    <div class="relative overflow-hidden">
+                        <img 
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=600&fit=crop" 
+                            alt="Data Visualization" 
+                            class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white font-semibold flex items-center gap-2 fluid-text-lg">
+                                View Live Demo
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="fluid-text-2xl font-bold mb-3 text-sky-400 group-hover:text-sky-300 transition-colors">Data Visualization</h3>
+                        <p class="fluid-text-base text-gray-300 mb-4">Interactive dashboard with D3.js visualizations and responsive design.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">D3.js</span>
+                            <span class="px-3 py-1 bg-sky-500/20 rounded-full text-sm text-sky-300">Vue</span>
+                            <span class="px-3 py-1 bg-blue-500/20 rounded-full text-sm text-blue-300">WebGL</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-gradient-to-b from-slate-900/30 to-transparent">
+        <div class="max-w-5xl mx-auto w-full">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="fluid-text-6xl font-bold mb-4 neon-text">About Me</h2>
+            </div>
+
+            <div class="glass-card rounded-2xl p-8 md:p-12">
+                <div class="space-y-6">
+                    <p class="fluid-text-xl text-gray-300 leading-relaxed">
+                        I'm a passionate full-stack developer and designer dedicated to creating innovative digital solutions that blend aesthetic excellence with technical precision.
+                    </p>
+                    <p class="fluid-text-lg text-gray-400 leading-relaxed">
+                        My expertise spans modern web technologies, user experience design, and scalable application development. I thrive on transforming complex challenges into elegant, user-friendly solutions that drive measurable results.
+                    </p>
+                    <p class="fluid-text-lg text-gray-400 leading-relaxed">
+                        Currently focused on building cutting-edge applications using React, TypeScript, and Node.js, I bring a unique perspective that bridges design thinking with robust software engineering practices.
+                    </p>
+
+                    <div class="pt-6 flex gap-4 flex-wrap justify-center">
+                        <a href="#" class="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-sky-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 fluid-text-base">
+                            Download Resume
+                        </a>
+                        <a href="#contact" class="inline-block px-8 py-4 border border-blue-500 text-blue-400 rounded-lg font-semibold hover:bg-blue-500/10 transition-all duration-300 fluid-text-base">
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="max-w-5xl mx-auto w-full text-center">
+            <div class="fade-in">
+                <h2 class="fluid-text-6xl font-bold mb-8 neon-text">Let's Connect</h2>
+                <p class="fluid-text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+                    Have a project in mind or want to collaborate? I'd love to hear from you.
+                </p>
+
+                <!-- Social Links -->
+                <div class="flex flex-wrap justify-center gap-8 mb-12 fluid-text-xl">
+                    <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                        GitHub
+                    </a>
+                    <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                        LinkedIn
+                    </a>
+                    <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                        Twitter
+                    </a>
+                    <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                        Email
+                    </a>
+                    <a href="#" class="social-link text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                        Dribbble
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-gray-500 fluid-text-base mb-2">© 2026 Mariam Sawera. All rights reserved.</p>
+                    <p class="text-gray-600 text-sm">Built with passion in the midnight sky ✨</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Side navigation scroll spy
+        const sections = document.querySelectorAll('section');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navDots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('data-section') === current) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
