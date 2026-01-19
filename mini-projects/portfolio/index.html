@@ -16,6 +16,106 @@
         body {
             background-color: #09090b;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Space background with stars and nebula */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            z-index: -2;
+        }
+
+        /* Animated stars */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 80%, white, transparent),
+                radial-gradient(1px 1px at 15% 60%, white, transparent);
+            background-size: 200% 200%, 300% 300%, 250% 250%, 280% 280%, 220% 220%, 260% 260%, 290% 290%;
+            background-position: 0% 0%, 20% 20%, 40% 40%, 60% 60%, 80% 80%, 10% 90%, 70% 30%;
+            animation: twinkle 8s ease-in-out infinite;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+
+        /* Floating particles */
+        .space-particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: -1;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            z-index: -1;
+        }
+
+        @keyframes shooting {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-300px, 300px);
+                opacity: 0;
+            }
         }
 
         /* Responsive zoom handling */
@@ -86,30 +186,35 @@
             animation: marquee 20s linear infinite;
         }
 
-        /* Glassmorphism card */
+        /* Glassmorphism card with space theme */
         .glass-card {
-            background: rgba(24, 24, 27, 0.6);
+            background: rgba(24, 24, 27, 0.4);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            box-shadow: 0 8px 32px 0 rgba(168, 85, 247, 0.1);
         }
 
         .glass-card:hover {
-            background: rgba(24, 24, 27, 0.8);
+            background: rgba(24, 24, 27, 0.6);
             border-color: rgba(168, 85, 247, 0.5);
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4),
+                        0 0 60px rgba(236, 72, 153, 0.2);
             transform: translateY(-5px);
         }
 
-        /* Neon glow effect */
+        /* Enhanced neon glow effect */
         .neon-text {
             text-shadow: 0 0 10px rgba(168, 85, 247, 0.8),
                          0 0 20px rgba(168, 85, 247, 0.6),
-                         0 0 30px rgba(168, 85, 247, 0.4);
+                         0 0 30px rgba(168, 85, 247, 0.4),
+                         0 0 40px rgba(236, 72, 153, 0.3);
         }
 
         .neon-border {
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.6),
+                        0 0 30px rgba(168, 85, 247, 0.4),
+                        inset 0 0 15px rgba(168, 85, 247, 0.2);
         }
 
         /* Social link underline animation */
@@ -126,6 +231,7 @@
             bottom: -4px;
             left: 0;
             background: linear-gradient(90deg, #a855f7, #ec4899);
+            box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
             transition: width 0.3s ease;
         }
 
@@ -189,9 +295,58 @@
             padding-top: clamp(3rem, 10vh, 5rem);
             padding-bottom: clamp(3rem, 10vh, 5rem);
         }
+
+        /* Aurora effect on scroll */
+        .aurora {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(ellipse at center, rgba(168, 85, 247, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at center, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+            animation: aurora 15s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes aurora {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: rotate(180deg) scale(1.2);
+                opacity: 0.6;
+            }
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-white">
+
+    <!-- Aurora Effect -->
+    <div class="aurora"></div>
+
+    <!-- Space Particles -->
+    <div class="space-particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="space-particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="space-particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="space-particle" style="left: 40%; animation-delay: 6s;"></div>
+    <div class="space-particle" style="left: 50%; animation-delay: 8s;"></div>
+    <div class="space-particle" style="left: 60%; animation-delay: 10s;"></div>
+    <div class="space-particle" style="left: 70%; animation-delay: 12s;"></div>
+    <div class="space-particle" style="left: 80%; animation-delay: 14s;"></div>
+    <div class="space-particle" style="left: 90%; animation-delay: 16s;"></div>
+    <div class="space-particle" style="left: 25%; animation-delay: 3s;"></div>
+    <div class="space-particle" style="left: 45%; animation-delay: 7s;"></div>
+    <div class="space-particle" style="left: 65%; animation-delay: 11s;"></div>
+    <div class="space-particle" style="left: 85%; animation-delay: 15s;"></div>
+
+    <!-- Shooting Stars -->
+    <div class="shooting-star" style="top: 20%; right: 30%; animation: shooting 3s ease-in 5s infinite;"></div>
+    <div class="shooting-star" style="top: 40%; right: 60%; animation: shooting 3s ease-in 12s infinite;"></div>
+    <div class="shooting-star" style="top: 60%; right: 20%; animation: shooting 3s ease-in 18s infinite;"></div>
+    <div class="shooting-star" style="top: 30%; right: 80%; animation: shooting 3s ease-in 25s infinite;"></div>
 
     <!-- Hero Section -->
     <section class="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 section-spacing">
@@ -313,24 +468,24 @@
     </section>
 
     <!-- About Section -->
-    <section class="min-h-screen py-20 px-4 sm:px-6 lg:px-8 flex items-center">
+    <section class="min-h-screen section-spacing px-4 sm:px-6 lg:px-8 flex items-center">
         <div class="max-w-7xl mx-auto w-full">
-            <h2 class="text-4xl sm:text-6xl font-bold mb-16 text-center neon-text">About Me</h2>
+            <h2 class="fluid-text-6xl font-bold mb-16 text-center neon-text">About Me</h2>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <!-- Text Column -->
                 <div class="space-y-6">
-                    <p class="text-xl text-gray-300 leading-relaxed">
+                    <p class="fluid-text-xl text-gray-300 leading-relaxed">
                         I'm a passionate full-stack developer and designer dedicated to creating innovative digital solutions that blend aesthetic excellence with technical precision.
                     </p>
-                    <p class="text-lg text-gray-400 leading-relaxed">
+                    <p class="fluid-text-lg text-gray-400 leading-relaxed">
                         My expertise spans modern web technologies, user experience design, and scalable application development. I thrive on transforming complex challenges into elegant, user-friendly solutions that drive measurable results.
                     </p>
-                    <p class="text-lg text-gray-400 leading-relaxed">
+                    <p class="fluid-text-lg text-gray-400 leading-relaxed">
                         Currently focused on building cutting-edge applications using React, TypeScript, and Node.js, I bring a unique perspective that bridges design thinking with robust software engineering practices.
                     </p>
                     <div class="pt-6">
-                        <a href="#" class="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105">
+                        <a href="#" class="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 fluid-text-base">
                             Download Resume
                         </a>
                     </div>
@@ -338,7 +493,7 @@
 
                 <!-- Headshot Column -->
                 <div class="flex justify-center lg:justify-end">
-                    <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl neon-border overflow-hidden glass-card relative group">
+                    <div class="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl neon-border overflow-hidden glass-card relative group" style="max-width: min(96vw, 24rem);">
                         <img 
                             src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=500&fit=crop" 
                             alt="Mariam Sawera - Professional Headshot" 
@@ -355,8 +510,8 @@
     <footer class="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-t border-white/10">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col items-center space-y-6 sm:space-y-8">
-                <h3 class="text-xl sm:text-2xl font-semibold text-gray-400">Let's Connect</h3>
-                <div class="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 text-lg sm:text-xl lg:text-2xl">
+                <h3 class="fluid-text-2xl font-semibold text-gray-400">Let's Connect</h3>
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12 fluid-text-xl">
                     <a href="#" class="social-link text-gray-300 hover:text-purple-400 transition-colors duration-300">
                         GitHub
                     </a>
@@ -373,7 +528,7 @@
                         Dribbble
                     </a>
                 </div>
-                <p class="text-gray-500 text-xs sm:text-sm text-center">© 2026 Mariam Sawera. All rights reserved.</p>
+                <p class="text-gray-500 fluid-text-base text-center">© 2026 Mariam Sawera. All rights reserved.</p>
             </div>
         </div>
     </footer>
