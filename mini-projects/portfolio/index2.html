@@ -391,7 +391,7 @@
             <!-- Bento Grid -->
             <div class="bento-grid">
                 <!-- Project 1 - Large -->
-                <div class="glass-card rounded-2xl p-6 sm:p-8 lg:col-span-2 lg:row-span-2 min-h-[350px] sm:min-h-[400px] flex flex-col justify-between overflow-hidden group">
+                <a href="https://your-project-alpha-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 sm:p-8 lg:col-span-2 lg:row-span-2 min-h-[350px] sm:min-h-[400px] flex flex-col justify-between overflow-hidden group cursor-pointer">
                     <!-- Project Image -->
                     <div class="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
                         <img 
@@ -403,14 +403,22 @@
                     
                     <div class="relative z-10">
                         <!-- Project Thumbnail -->
-                        <div class="mb-4 rounded-xl overflow-hidden border border-purple-500/20">
+                        <div class="mb-4 rounded-xl overflow-hidden border border-purple-500/20 relative">
                             <img 
                                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop" 
                                 alt="Project Alpha Preview" 
                                 class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                             />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="text-white font-semibold flex items-center gap-2">
+                                    View Live Demo
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                        <h3 class="fluid-text-2xl font-bold mb-3 sm:mb-4 text-purple-400">Project Alpha</h3>
+                        <h3 class="fluid-text-2xl font-bold mb-3 sm:mb-4 text-purple-400 group-hover:text-purple-300 transition-colors">Project Alpha</h3>
                         <p class="fluid-text-base text-gray-300 mb-4 sm:mb-6">A cutting-edge web application built with React and AI integration. Features real-time collaboration and advanced analytics.</p>
                     </div>
                     <div class="flex gap-2 flex-wrap relative z-10">
@@ -418,60 +426,84 @@
                         <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">AI/ML</span>
                         <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">WebSockets</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Project 2 -->
-                <div class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between overflow-hidden group relative">
+                <a href="https://your-design-system-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between overflow-hidden group relative cursor-pointer">
                     <div class="relative z-10">
                         <!-- Project Thumbnail -->
-                        <div class="mb-3 rounded-lg overflow-hidden border border-pink-500/20">
+                        <div class="mb-3 rounded-lg overflow-hidden border border-pink-500/20 relative">
                             <img 
                                 src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop" 
                                 alt="Design System Preview" 
                                 class="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
                             />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="text-white text-sm font-semibold flex items-center gap-2">
+                                    View Demo
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-pink-400">Design System</h3>
+                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-pink-400 group-hover:text-pink-300 transition-colors">Design System</h3>
                         <p class="fluid-text-base text-gray-300 mb-3 sm:mb-4">Comprehensive component library with dark mode and accessibility features.</p>
                     </div>
                     <div class="flex gap-2 flex-wrap relative z-10">
                         <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">Figma</span>
                         <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">CSS</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Project 3 -->
-                <div class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between overflow-hidden group relative">
+                <a href="https://your-ecommerce-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between overflow-hidden group relative cursor-pointer">
                     <div class="relative z-10">
                         <!-- Project Thumbnail -->
-                        <div class="mb-3 rounded-lg overflow-hidden border border-purple-500/20">
+                        <div class="mb-3 rounded-lg overflow-hidden border border-purple-500/20 relative">
                             <img 
                                 src="https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=400&fit=crop" 
                                 alt="E-Commerce Platform Preview" 
                                 class="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
                             />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="text-white text-sm font-semibold flex items-center gap-2">
+                                    View Demo
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-purple-400">E-Commerce Platform</h3>
+                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-purple-400 group-hover:text-purple-300 transition-colors">E-Commerce Platform</h3>
                         <p class="fluid-text-base text-gray-300 mb-3 sm:mb-4">Full-stack marketplace with payment integration and inventory management.</p>
                     </div>
                     <div class="flex gap-2 flex-wrap relative z-10">
                         <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">Next.js</span>
                         <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">Stripe</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Project 4 - Wide -->
-                <div class="glass-card rounded-2xl p-6 sm:p-8 lg:col-span-2 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between overflow-hidden group relative">
+                <a href="https://your-mobile-app-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 sm:p-8 lg:col-span-2 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between overflow-hidden group relative cursor-pointer">
                     <div class="relative z-10">
                         <!-- Project Thumbnail -->
-                        <div class="mb-3 rounded-lg overflow-hidden border border-pink-500/20">
+                        <div class="mb-3 rounded-lg overflow-hidden border border-pink-500/20 relative">
                             <img 
                                 src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=400&fit=crop" 
                                 alt="Mobile App Preview" 
                                 class="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
                             />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="text-white text-sm font-semibold flex items-center gap-2">
+                                    View Demo
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-pink-400">Mobile App</h3>
+                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-pink-400 group-hover:text-pink-300 transition-colors">Mobile App</h3>
                         <p class="fluid-text-base text-gray-300 mb-3 sm:mb-4">Cross-platform mobile application with offline-first architecture and push notifications.</p>
                     </div>
                     <div class="flex gap-2 flex-wrap relative z-10">
@@ -479,40 +511,56 @@
                         <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">Firebase</span>
                         <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">Redux</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Project 5 -->
-                <div class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between overflow-hidden group relative">
+                <a href="https://your-api-gateway-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 sm:p-8 min-h-[200px] sm:min-h-[250px] flex flex-col justify-between overflow-hidden group relative cursor-pointer">
                     <div class="relative z-10">
                         <!-- Project Thumbnail -->
-                        <div class="mb-3 rounded-lg overflow-hidden border border-purple-500/20">
+                        <div class="mb-3 rounded-lg overflow-hidden border border-purple-500/20 relative">
                             <img 
                                 src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop" 
                                 alt="API Gateway Preview" 
                                 class="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
                             />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="text-white text-sm font-semibold flex items-center gap-2">
+                                    View Demo
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-purple-400">API Gateway</h3>
+                        <h3 class="fluid-text-xl font-bold mb-3 sm:mb-4 text-purple-400 group-hover:text-purple-300 transition-colors">API Gateway</h3>
                         <p class="fluid-text-base text-gray-300 mb-3 sm:mb-4">Microservices architecture with GraphQL and REST endpoints.</p>
                     </div>
                     <div class="flex gap-2 flex-wrap relative z-10">
                         <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">Node.js</span>
                         <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">GraphQL</span>
                     </div>
-                </div>
+                </a>
 
                 <!-- Project 6 - Tall -->
-                <div class="glass-card rounded-2xl p-6 sm:p-8 lg:row-span-2 min-h-[350px] sm:min-h-[400px] flex flex-col justify-between overflow-hidden group relative">
+                <a href="https://your-data-viz-demo.com" target="_blank" rel="noopener noreferrer" class="glass-card rounded-2xl p-6 sm:p-8 lg:row-span-2 min-h-[350px] sm:min-h-[400px] flex flex-col justify-between overflow-hidden group relative cursor-pointer">
                     <div class="relative z-10">
                         <!-- Project Thumbnail -->
-                        <div class="mb-4 rounded-xl overflow-hidden border border-pink-500/20">
+                        <div class="mb-4 rounded-xl overflow-hidden border border-pink-500/20 relative">
                             <img 
                                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=600&fit=crop" 
                                 alt="Data Visualization Preview" 
                                 class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                             />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="text-white font-semibold flex items-center gap-2">
+                                    View Live Demo
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </span>
+                            </div>
                         </div>
-                        <h3 class="fluid-text-2xl font-bold mb-3 sm:mb-4 text-pink-400">Data Visualization</h3>
+                        <h3 class="fluid-text-2xl font-bold mb-3 sm:mb-4 text-pink-400 group-hover:text-pink-300 transition-colors">Data Visualization</h3>
                         <p class="fluid-text-base text-gray-300 mb-4 sm:mb-6">Interactive dashboard for real-time analytics with custom D3.js visualizations and responsive design.</p>
                     </div>
                     <div class="flex gap-2 flex-wrap relative z-10">
@@ -520,7 +568,7 @@
                         <span class="px-3 py-1 bg-pink-500/20 rounded-full fluid-text-base text-pink-300">Vue</span>
                         <span class="px-3 py-1 bg-purple-500/20 rounded-full fluid-text-base text-purple-300">WebGL</span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
